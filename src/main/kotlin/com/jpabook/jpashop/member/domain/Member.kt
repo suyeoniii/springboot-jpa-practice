@@ -7,8 +7,8 @@ class Member(username: String) {
 
     @Id
     @GeneratedValue
-    val id: Long? = null
+    var id: Long? = null
 
     @Column(length = 30, unique = true)
-    val username: String = username
+    var username: String = username
 }
