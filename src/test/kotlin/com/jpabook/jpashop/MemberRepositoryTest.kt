@@ -20,7 +20,7 @@ internal class MemberRepositoryTest(private val memberRepository: MemberReposito
 
         // when
         val savedMember = memberRepository.save(member)
-        val findMember = memberRepository.findOneById(savedMember?.id?:-1)
+        val findMember = memberRepository.findOneById(savedMember?.id ?: -1)
 
         // then
         assertEquals(findMember, member)
