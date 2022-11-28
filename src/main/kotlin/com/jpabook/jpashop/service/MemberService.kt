@@ -1,10 +1,9 @@
-package com.jpabook.jpashop.member.service
+package com.jpabook.jpashop.service
 
-import com.jpabook.jpashop.member.domain.Member
-import com.jpabook.jpashop.member.repository.MemberRepository
+import com.jpabook.jpashop.domain.Member
+import com.jpabook.jpashop.repository.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.lang.IllegalStateException
 import java.util.*
 
 @Service
@@ -21,8 +20,8 @@ class MemberService(private val memberRepository: MemberRepository) {
     }
 
     fun validateDuplicateMember(member: Member) {
-        val findMembers = memberRepository.findByUsername(member.username)
-        if(findMembers.isNotEmpty()) {
+        val findMembers = memberRepository.findByName(member.name)
+        if (findMembers.isNotEmpty()) {
             throw IllegalStateException("이미 존재하는 회원입니다")
         }
     }
