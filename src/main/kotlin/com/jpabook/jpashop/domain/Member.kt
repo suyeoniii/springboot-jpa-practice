@@ -3,7 +3,7 @@ package com.jpabook.jpashop.domain
 import javax.persistence.*
 
 @Entity
-class Member(name: String) {
+class Member(name: String, address: Address) {
 
     @Id
     @GeneratedValue
@@ -13,7 +13,7 @@ class Member(name: String) {
     var name: String = name
 
     @Embedded
-    var address: Address? = null
+    var address: Address = address
 
     @OneToMany(mappedBy = "member")
     var orders: MutableList<Order> = ArrayList()

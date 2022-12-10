@@ -20,6 +20,6 @@ class ItemService(private val itemRepository: ItemRepository) {
     }
 
     fun findOne(itemId: Long): Item? {
-        return itemRepository.findItem(itemId)
+        return itemRepository.findOneById(itemId)
     }
 }
