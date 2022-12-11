@@ -4,7 +4,6 @@ import com.jpabook.jpashop.domain.Member
 import com.jpabook.jpashop.repository.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
 
 @Service
 @Transactional(readOnly = true)
@@ -29,14 +28,22 @@ class MemberService(private val memberRepository: MemberRepository) {
     /**
      * 회원 전체 조회
      */
-    fun findMembers(): List<Member?> {
+    fun findMembers(): List<Member> {
         return memberRepository.findAll()
     }
 
     /**
      * 회원 조회
      */
-    fun findOne(memberId: Long): Optional<Member> {
-        return memberRepository.findById(memberId)
+    fun findOne(memberId: Long): Member? {
+        // TODO: member가 없는 경우 error
+        return memberRepository.findOneById(memberId)
+    }
+
+    @Transactional
+    fun update(id: Long, name: String) {
+        val member = memberRepository.findOneById(id)
+        // TODO: member가 없는 경우 error
+        member!!.name = name // 변경 감지
     }
 }

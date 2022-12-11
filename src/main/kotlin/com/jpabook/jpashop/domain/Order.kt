@@ -16,10 +16,10 @@ class Order(orderDate: LocalDateTime, status: OrderStatus) {
     @JoinColumn(name = "member_id")
     var member: Member? = null
 
-    @OneToMany(mappedBy = "order", cascade = [javax.persistence.CascadeType.ALL])
+    @OneToMany(mappedBy = "order", cascade = [CascadeType.ALL])
     var orderItems: MutableList<OrderItem> = ArrayList()
 
-    @OneToOne(cascade = [javax.persistence.CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     var delivery: Delivery? = null
 
